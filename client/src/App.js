@@ -5,7 +5,7 @@ function App() {
   const [testData, setTestData] = useState([{}])
 
   useEffect(() => {
-    fetch("/api").then(
+    fetch("/validate-credit-card").then(
       response => response.json()
     ).then(
       data => {
