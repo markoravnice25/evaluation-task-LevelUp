@@ -30,13 +30,17 @@ app.post("/validate-credit-card", (req, res) => {
   const panFirstTwoDigits = pan.slice(0, 2)
   if(panFirstTwoDigits === '34' || panFirstTwoDigits === '37') {
     if(cvv.length !== 4) {
-      resJSON.cvvError = 'CVV invalid4'
+      resJSON.cvvError = 'CVV must be four digits'
     }
   } else if(cvv.length !== 3) {
-    resJSON.cvvError = 'CVV invalid3'
+    resJSON.cvvError = 'CVV must be three digits'
+  }
+
+  if(pan.length < 16 || pan.length > 19) {
+    resJSON.panError = 'Credit card number must be between 16 and 19 digits long'
   }
   
-  if(resJSON.expiryError || resJSON.cvvError) {
+  if(resJSON.expiryError || resJSON.cvvError || resJSON.panError) {
     resJSON.isValid = false
   } else {
     resJSON.isValid = true
