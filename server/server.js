@@ -73,6 +73,11 @@ const validatePan = (pan, resJSON) => {
   }
 
   return resJSON
-} 
+}
+
+// TODO 4. Last digit of the PAN (card number) is checked using Luhn’s algorithm
+const validateLuhn = () => {
+  
+}
 
 app.listen(5003, () => { console.log("server started on port 5003") })
