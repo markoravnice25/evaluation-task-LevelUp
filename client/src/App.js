@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 
-import Button from 'react-bootstrap/esm/Button'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/esm/Col'
 import axios from 'axios'
 
 function App() {
@@ -32,6 +29,7 @@ function App() {
       if(response.data.isValid) {
         setStatus(' ✅')
       } else {
+        setErrors(response.data)
         setStatus(' ❌')
       }
     } catch (error) {
@@ -75,16 +73,16 @@ function App() {
           <h1>Credit Card Check</h1>
             {/* CC number */}
             <label htmlFor="pan">CC number</label>
-            <input type="text" name='pan' className='input' placeholder='CC number' value={formData.pan} onChange={handleChange} />
-            {/* {errors.pan && <p className='text-danger'>{errors.pan}</p>} */}
-            {/* Email */}
+            <input type="text" name='pan' className='input' placeholder='16-19 digits' value={formData.pan} onChange={handleChange} />
+            {errors.panError && <p className='text-danger'>{errors.panError}</p>}
+            {/* Expiry Date */}
             <label htmlFor="expiryDate">Expiry Date</label>
-            <input type="text" name="expiryDate" className='input' placeholder='Expiry Date' value={formData.expiryDate} onChange={handleChange} />
-            {/* {errors.expiryDate && <p className='text-danger'>{errors.expiryDate}</p>} */}
-            {/* Password */}
+            <input type="text" name="expiryDate" className='input' placeholder='mmyy' value={formData.expiryDate} onChange={handleChange} />
+            {errors.expiryError && <p className='text-danger'>{errors.expiryError}</p>}
+            {/* CVV */}
             <label htmlFor="cvv">CVV</label>
             <input type="text" name="cvv" className='input' placeholder='CVV' value={formData.cvv} onChange={handleChange} />
-            {/* {errors.cvv && <p className='text-danger'>{errors.cvv}</p>} */}
+            {errors.cvvError && <p className='text-danger'>{errors.cvvError}</p>}
             {/* Submit */}
             <button type="submit" className="button">Submit{status}</button>
           </form>
