@@ -39,33 +39,6 @@ function App() {
   }
 
   return (
-    // <div>
-    //   <Form className='auth-login' onSubmit={handleSubmit}>
-    //     <Row className="mb-3 form-label">
-    //       <Row>
-    //         <h3 className='login-heading'>Credit card check</h3>
-    //       </Row>
-    //       <Form.Group as={Col}>
-    //         <Form.Label>CC number</Form.Label>
-    //         <Form.Control type="text" name='pan' value={formData.pan} onChange={handleChange} />
-    //       </Form.Group>
-    //       <Form.Group as={Col}>
-    //         <Form.Label>Expiry Date</Form.Label>
-    //         <Form.Control type="text" name='expiryDate' value={formData.expiryDate} onChange={handleChange} />
-    //       </Form.Group>
-    //       <Form.Group as={Col}>
-    //         <Form.Label>CVV</Form.Label>
-    //         <Form.Control type="text" name='cvv' value={formData.cvv} onChange={handleChange} />
-    //         {errors && <p className='text-danger'>{errors}ERROR</p>}
-    //       </Form.Group>
-    //       <Form.Group>
-    //         <Button className='button-login' type="submit">
-    //           Submit{status}
-    //         </Button>
-    //       </Form.Group>
-    //     </Row>
-    //   </Form>
-    // </div>
     <section className='form-page'>
       <Container>
         <Row>
