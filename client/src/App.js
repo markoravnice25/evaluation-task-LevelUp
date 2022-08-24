@@ -1,26 +1,31 @@
+// Imports - React
 import React, { useState } from 'react'
-
+// Imports - react-bootstrap
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import axios from 'axios'
 
 function App() {
 
+  // useState input properties set as empty strings
   const [formData, setFormData] = useState({
     pan: '',
     expiryDate: '',
     cvv: '',
   })
-
+  // errors useState used to set error message under relevant form fields
   const [errors, setErrors] = useState(false)
+  // status useState used to display ✅ or ❌ next tosubmit button
   const [status, setStatus] = useState('')
 
+  //handle change function executes upon each event 'e'
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     setErrors(false)
     setStatus('')
   }
 
+  // handlerSubmit function used to activate setErrors and/or setStatus
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
