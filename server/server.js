@@ -16,10 +16,9 @@ app.post("/validate-credit-card", (req, res) => {
   resJSON = validateExpiryDate(expiryDate, resJSON)
   resJSON = validateCVV(pan, cvv, resJSON)
   resJSON = validatePan(pan, resJSON)
-  // resJSON = validateLuhn(pan, resJSON)
 
   // create isValid property on resJSON object and set to true or false
-  if(resJSON.expiryError || resJSON.cvvError || resJSON.panError || resJSON.luhnError) {
+  if(resJSON.expiryError || resJSON.cvvError || resJSON.panError) {
     resJSON.isValid = false
   } else {
     resJSON.isValid = true
@@ -77,27 +76,5 @@ const validatePan = (pan, resJSON) => {
 }
 
 // TODO 4. Last digit of the PAN (card number) is checked using Luhn’s algorithm
-// const validateLuhn = (pan, resJSON) => {
-//       let nDigits = pan.length
-//       let nSum = 0
-//       let isSecond = false
-//       for (let i = nDigits - 1; i >= 0; i--)
-//       {
-
-//           let d = pan[i].charCodeAt() - '0'.charCodeAt()
-
-//           if (isSecond == true)
-//               d = d * 2
-
-//           nSum += parseInt(d / 10, 10)
-//           nSum += d % 10
-
-//           isSecond = !isSecond
-//       }
-//       if(nSum % 10 !== 0) {
-//         resJSON.luhnError = 'Luhn\'s algorithm not passed, re-enter CC number'
-//       }
-//       return resJSON
-// }
 
 app.listen(5003, () => { console.log("server started on port 5003") })
