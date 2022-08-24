@@ -18,8 +18,9 @@ app.post("/validate-credit-card", (req, res) => {
 
     const currentDate = Date.now()
     const ccDate = new Date(`20${year}-${month}-01`)
-    console.log('month:', month, 'year:', year)
-    console.log(currentDate < ccDate)
+    if (ccDate.toString() === 'Invalid Date') {
+      resJSON.expiryError = 'expiryDate must be 4 digits in format mmyy'
+    }
     if(currentDate >= ccDate){
       resJSON.expiryError = 'expiryDate must be in the future'
     }
@@ -29,14 +30,14 @@ app.post("/validate-credit-card", (req, res) => {
 
   const panFirstTwoDigits = pan.slice(0, 2)
   if(panFirstTwoDigits === '34' || panFirstTwoDigits === '37') {
-    if(cvv.length !== 4) {
+    if(cvv.length !== 4 || isNaN(cvv)) {
       resJSON.cvvError = 'CVV must be four digits'
     }
-  } else if(cvv.length !== 3) {
+  } else if(cvv.length !== 3 || isNaN(cvv)) {
     resJSON.cvvError = 'CVV must be three digits'
   }
 
-  if(pan.length < 16 || pan.length > 19) {
+  if(pan.length < 16 || pan.length > 19 || isNaN(pan)) {
     resJSON.panError = 'Credit card number must be between 16 and 19 digits long'
   }
   
