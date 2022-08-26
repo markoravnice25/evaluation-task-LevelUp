@@ -18,7 +18,7 @@ app.post("/validate-credit-card", (req, res) => {
   resJSON = validatePan(pan, resJSON)
 
   // create isValid property on resJSON object and set to true or false
-  if(resJSON.expiryError || resJSON.cvvError || resJSON.panError) {
+  if(resJSON.expiryError || resJSON.cvvError || resJSON.panError || resJSON.luhnError) {
     resJSON.isValid = false
   } else {
     resJSON.isValid = true
