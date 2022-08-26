@@ -71,26 +71,20 @@ const validatePan = (pan, resJSON) => {
   if(pan.length < 16 || pan.length > 19 || isNaN(pan)) {
     resJSON.panError = 'Credit card number must be between 16 and 19 digits long'
   }
-  let nDigits = pan.length
-  let nSum = 0
-  let isSecond = false
-  for(let i = nDigits; i > 0; i--) {
-    let d = cardNo[i].charCodeAt() - '0'.charCodeAt()
 
-    if (isSecond === true) {
-      d = d * 2
-      nSum += parseInt(d / 10, 10)
-      nSum += d % 10
-      isSecond = !isSecond
-    }
-  }
-  if(nSum % 10 === 0) {
-    resJSON.luhnError = ' Invalid Credit Card number'
-  }
+  // TODO 4. Last digit of the PAN (card number) is checked using Luhn’s algorithm
+  let arr = (pan + '')
+  .split('')
+  .reverse()
+  .map(x => parseInt(x))
+let lastDigit = arr.splice(0, 1)[0]
+let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0)
+sum += lastDigit
+if(sum % 10 !== 0) {
+  resJSON.luhnError = 'Invalid Credit Card number'
+}
 
   return resJSON
 }
-
-// TODO 4. Last digit of the PAN (card number) is checked using Luhn’s algorithm
 
 app.listen(5003, () => { console.log("server started on port 5003") })

@@ -15,7 +15,7 @@ function App() {
   })
   // errors useState used to set error message under relevant form fields
   const [errors, setErrors] = useState(false)
-  // status useState used to display ✅ or ❌ next tosubmit button
+  // status useState used to display ✅ or ❌ next to submit button
   const [status, setStatus] = useState('')
 
   //handle change function executes upon each event 'e'
