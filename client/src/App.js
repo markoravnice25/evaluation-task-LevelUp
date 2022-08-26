@@ -53,6 +53,7 @@ function App() {
             <label htmlFor="pan">CC number</label>
             <input type="text" name='pan' className='input' placeholder='16-19 digits' value={formData.pan} onChange={handleChange} />
             {errors.panError && <p className='text-danger'>{errors.panError}</p>}
+            {errors.luhnError && <p className='text-danger'>{errors.luhnError}</p>}
             {/* Expiry Date */}
             <label htmlFor="expiryDate">Expiry Date</label>
             <input type="text" name="expiryDate" className='input' placeholder='mmyy' value={formData.expiryDate} onChange={handleChange} />
