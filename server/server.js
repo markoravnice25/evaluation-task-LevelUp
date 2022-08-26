@@ -71,6 +71,22 @@ const validatePan = (pan, resJSON) => {
   if(pan.length < 16 || pan.length > 19 || isNaN(pan)) {
     resJSON.panError = 'Credit card number must be between 16 and 19 digits long'
   }
+  let nDigits = pan.length
+  let nSum = 0
+  let isSecond = false
+  for(let i = nDigits; i > 0; i--) {
+    let d = cardNo[i].charCodeAt() - '0'.charCodeAt()
+
+    if (isSecond === true) {
+      d = d * 2
+      nSum += parseInt(d / 10, 10)
+      nSum += d % 10
+      isSecond = !isSecond
+    }
+  }
+  if(nSum % 10 === 0) {
+    resJSON.luhnError = ' Invalid Credit Card number'
+  }
 
   return resJSON
 }
