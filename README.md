@@ -3,8 +3,12 @@
 # Basic Credit Card check
 
 ## Code Installation
-* To run the back end of this app, cd into 'server' and run command: 'npm run dev'
-* To run the front end of this app, cd into 'client' and run command: 'npm start'
+* To run the back end of this app, cd into 'server' and run commands:
+'npm install --save-dev nodemon'
+'npm run dev'
+* To run the front end of this app, cd into 'client' and run commands:
+'npm i react'
+'npm start'
 
 ## The task:
 Let’s imagine you’re creating an e-commerce website. The site is looking good and you are ready to implement payments. The first step of your payment process is entering payment information. One of the possibilities is to pay with a credit card. You use an external payment system to process the payments, and the external system has a limited number of payments it can process.
